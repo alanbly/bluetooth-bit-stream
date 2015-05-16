@@ -77,6 +77,10 @@ var channel = 40; //devices[2].services[0].channel;
 
 connect(address, channel);
 
+BTserial.findSerialPortChannel(address, function(channel) {
+    console.log("Serial Port: ", address, channel);
+});
+
 
 
 
