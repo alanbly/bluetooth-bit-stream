@@ -63,13 +63,6 @@ function connect(address, channel) {
     });
 }
 
-BTserial.listPairedDevices(function(devices) {
-    console.log('Paired with: ');
-    devices.forEach(function(device) {
-        console.log(device);
-    });
-});
-
 // 14-10-9f-de-db-2a - Ghanima
 
 var address = '14-10-9f-de-db-2a'; // TODO: Connect in some intelligent way
@@ -78,9 +71,16 @@ var channel = 40; //devices[2].services[0].channel;
 connect(address, channel);
 
 (function findSerial(address) {
-    BTserial.findSerialPortChannel(address, function(channel) {
-        console.log("Serial Port: ", address, channel);
-        setTimeout(function() {findSerial(address);}, 1000);
+    BTserial.listPairedDevices(function(devices) {
+        console.log('Paired with: ');
+        devices.forEach(function(device) {
+            console.log(device);
+        });
+
+        BTserial.findSerialPortChannel(address, function(channel) {
+            console.log("Serial Port: ", address, channel);
+            setTimeout(function() {findSerial(address);}, 1000);
+        });
     });
 })(address);
 
