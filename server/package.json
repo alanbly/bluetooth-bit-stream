@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alanbly",
+  "license": "MIT",
+  "dependencies": {
+    "bluetooth-serial-port": "^1.2.3",
+    "crypto": "0.0.3",
+    "io": "^0.1.6",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
+    "socket.io-stream": "^0.8.0"
+  }
+}
