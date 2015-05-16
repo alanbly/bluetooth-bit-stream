@@ -60,6 +60,7 @@ function connect(address, channel) {
         });
     }, function (err) {
         console.log('cannot connect', err);
+        setTimeout(function() {connect(address, channel)}, 1000);
     });
 }
 

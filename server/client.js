@@ -20,6 +20,7 @@ function connect(address, channel) {
         BTserial.on('data', onData);
     }, function (err) {
         console.log('cannot connect', err);
+        setTimeout(function() {connect(address, channel)}, 1000);
     });
 }
 
