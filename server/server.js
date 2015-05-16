@@ -42,7 +42,7 @@ io.of('/index').on('connection', function(socket) {
 });
 
 function connect(address, channel) {
-    BTserial.close();
+    findSerial(address)
     console.log("Connect to: ", address, channel);
     BTserial.connect(address, channel, function() {
         console.log('Connected!');
@@ -71,19 +71,19 @@ var channel = 3; //devices[2].services[0].channel;
 
 connect(address, channel);
 
-// (function findSerial(address) {
-//     BTserial.listPairedDevices(function(devices) {
-//         console.log('Paired with: ');
-//         devices.forEach(function(device) {
-//             console.log(device);
-//         });
+function findSerial(address) {
+    BTserial.listPairedDevices(function(devices) {
+        console.log('Paired with: ');
+        devices.forEach(function(device) {
+            console.log(device);
+        });
 
-//         BTserial.findSerialPortChannel(address, function(channel) {
-//             console.log("Serial Port: ", address, channel);
-//             setTimeout(function() {findSerial(address);}, 1000);
-//         });
-//     });
-// })(address);
+        BTserial.findSerialPortChannel(address, function(channel) {
+            console.log("Serial Port: ", address, channel);
+            //setTimeout(function() {findSerial(address);}, 1000);
+        });
+    });
+}
 
 
 
