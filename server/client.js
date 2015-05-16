@@ -41,7 +41,7 @@ function findSerial(address) {
 
         BTserial.findSerialPortChannel(address, function(channel) {
             console.log("Serial Port: ", address, channel);
-            setTimeout(function() {findSerial(address);}, 1000);
+            //setTimeout(function() {findSerial(address);}, 1000);
         });
     });
 };
