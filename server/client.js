@@ -1,7 +1,9 @@
-var io = require('socket.io-client');
-var ss = require("socket.io-stream");
+var io = require('socket.io-client'),
+    ss = require("socket.io-stream"),
+    BTSP = require('bluetooth-serial-port'),
+    BTserial = new BTSP.BluetoothSerialPort();
 
-var socket = io.connect('http://localhost:4444/index');
+var socket = io.connect('http://192.168.1.6:4444/index');
 var stream = ss.createStream();
  
 ss(socket).emit('indices', stream);

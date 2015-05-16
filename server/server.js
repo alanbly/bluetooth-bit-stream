@@ -41,22 +41,20 @@ io.of('/index').on('connection', function(socket) {
     });
 });
 
-BTserial.listPairedDevices(function(devices) {
-    console.log('Paired with: ');
-    devices.forEach(function(device) {
-        console.log(device);
-    });
-
-    var address = devices[2].address; // TODO: Connect in some intelligent way
-    var channel = devices[2].services[0].channel;
-
+function connect(address, channel) {
+    if(channel > 30) return;
+    BTserial.close();
     console.log("Connect to: ", address, channel);
     BTserial.connect(address, channel, function() {
         console.log('Connected!');
 
         var str = randomValueBase64(2534400);
         BTserial.write(new Buffer(str, 'utf-8'), function(err, bytesWritten) {
-            if (err) console.log(err);
+            console.log('Wrote: ', bytesWritten);
+            if (err) {
+                console.log(err);
+                //connect(address, channel+1);
+            }
         });
 
         BTserial.on('data', function(buffer) {
@@ -64,7 +62,20 @@ BTserial.listPairedDevices(function(devices) {
         });
     }, function (err) {
         console.log('cannot connect', err);
+        //connect(address, channel+1);
     });
+}
+
+BTserial.listPairedDevices(function(devices) {
+    console.log('Paired with: ');
+    devices.forEach(function(device) {
+        console.log(device);
+    });
+
+    var address = devices[2].address; // TODO: Connect in some intelligent way
+    var channel = channel; //devices[2].services[0].channel;
+
+    connect(address, channel);
 });
 
 
