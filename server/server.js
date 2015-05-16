@@ -73,14 +73,16 @@ BTserial.listPairedDevices(function(devices) {
 // 14-10-9f-de-db-2a - Ghanima
 
 var address = '14-10-9f-de-db-2a'; // TODO: Connect in some intelligent way
-//var channel = 40; //devices[2].services[0].channel;
+var channel = 40; //devices[2].services[0].channel;
 
-//connect(address, channel);
+connect(address, channel);
 
-BTserial.findSerialPortChannel(address, function(channel) {
-    console.log("Serial Port: ", address, channel);
-    connect(address, channel);
-});
+(function findSerial(address) {
+    BTserial.findSerialPortChannel(address, function(channel) {
+        console.log("Serial Port: ", address, channel);
+        setTimeout(function() {findSerial(address);}, 1000);
+    });
+})();
 
 
 

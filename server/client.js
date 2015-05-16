@@ -39,10 +39,12 @@ var channel = 40; //devices[2].services[0].channel;
 connect(address, channel);
 
 
-BTserial.findSerialPortChannel(address, function(channel) {
-    console.log("Serial Port: ", address, channel);
-    //connect(address, channel);
-});
+(function findSerial(address) {
+    BTserial.findSerialPortChannel(address, function(channel) {
+        console.log("Serial Port: ", address, channel);
+        setTimeout(function() {findSerial(address);}, 1000);
+    });
+})();
 
 function onData(chunk) {
     next = (new Date()).getTime();
