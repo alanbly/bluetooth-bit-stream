@@ -71,12 +71,14 @@ BTserial.listPairedDevices(function(devices) {
     devices.forEach(function(device) {
         console.log(device);
     });
-
-    var address = devices[2].address; // TODO: Connect in some intelligent way
-    var channel = channel; //devices[2].services[0].channel;
-
-    connect(address, channel);
 });
+
+// 14-10-9f-de-db-2a - Ghanima
+
+var address = '14-10-9f-de-db-2a'; // TODO: Connect in some intelligent way
+var channel = channel; //devices[2].services[0].channel;
+
+//connect(address, channel);
 
 
 
