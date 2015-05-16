@@ -42,7 +42,6 @@ io.of('/index').on('connection', function(socket) {
 });
 
 function connect(address, channel) {
-    if(channel > 30) return;
     BTserial.close();
     console.log("Connect to: ", address, channel);
     BTserial.connect(address, channel, function() {
@@ -53,7 +52,6 @@ function connect(address, channel) {
             console.log('Wrote: ', bytesWritten);
             if (err) {
                 console.log(err);
-                //connect(address, channel+1);
             }
         });
 
@@ -62,7 +60,6 @@ function connect(address, channel) {
         });
     }, function (err) {
         console.log('cannot connect', err);
-        //connect(address, channel+1);
     });
 }
 
@@ -76,9 +73,9 @@ BTserial.listPairedDevices(function(devices) {
 // 14-10-9f-de-db-2a - Ghanima
 
 var address = '14-10-9f-de-db-2a'; // TODO: Connect in some intelligent way
-var channel = channel; //devices[2].services[0].channel;
+var channel = 40; //devices[2].services[0].channel;
 
-//connect(address, channel);
+connect(address, channel);
 
 
 

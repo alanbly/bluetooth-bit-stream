@@ -6,7 +6,7 @@ var io = require('socket.io-client'),
 var socket = io.connect('http://192.168.1.6:4444/index');
 var stream = ss.createStream();
  
-ss(socket).emit('indices', stream);
+//ss(socket).emit('indices', stream);
 
 var last = (new Date()).getTime(), count = 0, average = 0, next, diff;
 //stream.on('data', onData);
