@@ -82,7 +82,7 @@ connect(address, channel);
         console.log("Serial Port: ", address, channel);
         setTimeout(function() {findSerial(address);}, 1000);
     });
-})();
+})(address);
 
 
 

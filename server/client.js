@@ -44,7 +44,7 @@ connect(address, channel);
         console.log("Serial Port: ", address, channel);
         setTimeout(function() {findSerial(address);}, 1000);
     });
-})();
+})(address);
 
 function onData(chunk) {
     next = (new Date()).getTime();
